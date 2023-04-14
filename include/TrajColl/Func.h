@@ -124,6 +124,7 @@ public:
     tLowerLimit_ = t;
   }
 
+  std::map<double, std::shared_ptr<Func<T>>> getFuncs() const{return this->funcs_;};
 protected:
   /** \brief Check argument of function.
       \param t arugment of function
@@ -211,6 +212,7 @@ public:
     return ret;
   }
 
+  const std::array<T, Order + 1> & getCoeff() const { return this->coeff_;};
 protected:
   //! Coefficients from low order (i.e., constant term) to high order
   std::array<T, Order + 1> coeff_;

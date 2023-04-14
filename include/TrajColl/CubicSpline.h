@@ -208,6 +208,21 @@ public:
     this->tLowerLimit_ = points_.begin()->first;
   }
 
+  std::map<double, std::shared_ptr<CubicPolynomial<T>>> getCubicPolyFuncs() const 
+  {
+    std::map<double, std::shared_ptr<CubicPolynomial<T>>> CubicPolyFuncs;
+    for(const auto& funcPair:this->funcs_)
+    {
+      const auto& funcPtr = funcPair.second;
+      auto cubicPolyfuncPtr = std::dynamic_pointer_cast<CubicPolynomial<T>>(funcPtr);
+      if(cubicPolyfuncPtr != nullptr)
+        CubicPolyFuncs.insert(std::make_pair(funcPair.first, cubicPolyfuncPtr));
+    }
+    return CubicPolyFuncs;
+    //return dynamic_cast<std::map<double, std::shared_ptr<CubicPolynomial<T>>>> (this->funcs_);
+  }; 
+
+  
 protected:
   //! Dimension of value
   int dim_;
